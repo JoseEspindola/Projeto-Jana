@@ -57,16 +57,17 @@ def cadastro():
     if request.method == 'POST':    
         usuario = request.form.get("textUsuario")
         senha = request.form.get("pwSenha")
-        imagem = request.files.get("fileFoto")
-        if verificar_arquivos(imagem):
+        imagem = request.files.get("fileFoto")  # Pode ser None se não for enviado
+        if not imagem or verificar_arquivos(imagem):
             if novoUsuario(usuario, senha) and upload_imagem(imagem, usuario):
-                flash(f"Cadastro do usuário {usuario} realizado.  <br>Seja Bem Vindo(a)!!")
+                flash(f"Cadastro do usuário {usuario} realizado. <br>Seja Bem-Vindo(a)!")
                 return redirect(url_for('front_controller.login'))
             else:
                 flash(f"Usuário: {usuario} já existe")
         else:
-            flash("Formato de arquivo não aceito <br>Tente outra imagem")
+            flash("Formato de arquivo não aceito. <br>Tente outra imagem com formato png.")
     return render_template("cadastro.html")
+
 
 # ---------------- Rota para Alugar ---------------- #
 @front_controller.route('/alugar', methods=['GET', 'POST'])

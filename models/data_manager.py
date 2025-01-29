@@ -13,6 +13,15 @@ def load_data():
 def save_data(data):
     with open(config.DATA_FILE, "w") as file:
         json.dump(data, file, indent=4)
+def load_login():
+    if not os.path.exists(config.DATA_LOGIN):
+        return []
+    with open(config.DATA_LOGIN, "r") as file:
+        return json.load(file)
+
+def save_login(data):
+    with open(config.DATA_LOGIN, "w") as file:
+        json.dump(data, file, indent=4)
 
 
 #---------------------------------------------------------------------------------------------------
@@ -42,8 +51,7 @@ def buscar_animacao():
 
 
 # Funções de gerenciamento de usuários
-usuarios = []
-
+usuarios = load_login()
 def novoUsuario(usuario, senha):
     usuarioExistente = False
     for u in usuarios:
@@ -52,6 +60,7 @@ def novoUsuario(usuario, senha):
     if usuarioExistente:
         return False
     usuarios.append({"usuario": usuario, "senha": senha})
+    save_login(usuarios)
     return True    
 
 def logandoUsuario(usuario, senha):
@@ -67,13 +76,22 @@ TIPOS_IMAGEM = config.TIPOS_IMAGEM
 
 def upload_imagem(imagem, nome):
     os.makedirs(UPLOAD_FOLDER, exist_ok=True)  # Cria o diretório se ele não existir
-    # Nome do arquivo será baseado na sessão, com a mesma extensão do arquivo original
-    extension = imagem.filename.rsplit('.', 1)[1].lower()
-    unique_filename = f"{nome}.{extension}"
-    filepath = os.path.join(UPLOAD_FOLDER, unique_filename)
-    # Salva o arquivo, substituindo qualquer outro com o mesmo nome
-    imagem.save(filepath)
+
+    if imagem:  # Se uma imagem foi enviada
+        extension = imagem.filename.rsplit('.', 1)[1].lower()
+        unique_filename = f"{nome}.{extension}"
+        filepath = os.path.join(UPLOAD_FOLDER, unique_filename)
+        imagem.save(filepath)
+    else:  # Se nenhuma imagem foi enviada, use a imagem padrão
+        default_image_path = os.path.join(UPLOAD_FOLDER, "default.png")
+        filepath = os.path.join(UPLOAD_FOLDER, f"{nome}.png")
+        if os.path.exists(default_image_path):
+            with open(default_image_path, "rb") as default_image:
+                with open(filepath, "wb") as user_image:
+                    user_image.write(default_image.read())
+
     return True
+
 
 def verificar_arquivos(imagem):
     return '.' in imagem.filename and imagem.filename.rsplit('.', 1)[1].lower() in TIPOS_IMAGEM
