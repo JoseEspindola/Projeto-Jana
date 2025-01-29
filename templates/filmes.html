@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+Para alugar
+{% endblock titulo %}
+
+{% block conteudo %}
+<div class="container">
+    {% if animacoes %}
+        <h2 class="mt-4">{{ opcao }}</h2>
+        <br>
+        <div class="container mt-4">
+            <div class="row">
+                {% for animacao in animacoes[:20] %}
+                <div class="col-md-4 mb-4"> <!-- Define o tamanho do card, ajustando com a grid do Bootstrap -->
+                    <div class="card">
+                        <img src="https://image.tmdb.org/t/p/w500/{{ animacao.poster_path }}" class="card-img-top" alt="Poster de {{ animacao.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ animacao.title }}</h5>
+                            <p class="card-text">{{ animacao.overview }}</p>
+                            <hr>
+                            <div class="text-center">
+                            <p class="text-warning fw-bold">Disponível para aluguel</p>
+                            <form method="POST" action="{{ url_for('front_controller.alugar') }}">
+                                <input type="hidden" name="titulo" value="{{ animacao.title }}">
+                                <input type="hidden" name="overview" value="{{ animacao.overview }}">
+                                <input type="hidden" name="poster_path" value="{{ animacao.poster_path }}">
+                                <button type="submit" class="btn btn-primary">Alugar</button>
+                            </form> 
+                        </div>                            
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>        
+    {% else %}
+        <p>{{opcao}}</p>
+    {% endif %}
+</div>
+
+{% endblock conteudo %}

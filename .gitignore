@@ -1,0 +1,57 @@
+# Ignorar arquivos e pastas temporárias do Python
+*.pyc
+*.pyo
+__pycache__/
+*.pyd
+
+# Ignorar pastas de ambientes virtuais
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Ignorar a pasta do banco de dados (se estiver usando SQLite, por exemplo)
+*.db
+*.sqlite3
+
+# Ignorar logs e arquivos temporários
+*.log
+*.pot
+*.swp
+*.swo
+
+# Ignorar arquivos de configuração específicos do sistema
+*.DS_Store      # Para sistemas macOS
+Thumbs.db       # Para sistemas Windows
+
+# Ignorar arquivos de configuração do editor (exemplo para VS Code)
+.vscode/
+
+# Ignorar arquivos de configuração do PyCharm
+.idea/
+
+# Ignorar arquivos de dependências (se estiver usando o Pipenv ou Poetry, por exemplo)
+Pipfile.lock
+poetry.lock
+
+# Ignorar arquivos de teste (se estiver usando pytest ou outros frameworks)
+*.cover
+nosetests.xml
+coverage.xml
+*.hypothesis/
+
+# Ignorar arquivos de backup de editores de texto
+*~
+
+# Ignorar arquivos de pacotes Python de distribuição
+dist/
+build/
+.eggs/
+
+# Ignorar o arquivo de banco de dados temporário para Flask
+instance/
+
+# Ignorar arquivos gerados pelo Flask
+*.pot
+*.pyc
