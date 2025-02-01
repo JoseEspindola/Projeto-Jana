@@ -1,268 +1,261 @@
 /* Principal */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
- 
 body {
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
 }
 
-hr{
-    margin: 30px;
-    border-color: rgb(138, 199, 224);
+hr {
+  margin: 30px;
+  border-color: rgb(138, 199, 224);
 }
 
-
-.mb-0{
-    font-size: 24px;
+.mb-0 {
+  font-size: 24px;
 }
 
-footer{
-    background-color: #ffbee4;
-    color: rgb(199, 44, 145);
-
+footer {
+  background-color: #ffbee4;
+  color: rgb(199, 44, 145);
 }
 
 /* Filmes e Alugados */
 
 .container {
-    text-align: center;
-    padding: 10px ;
-    max-width: 1200px; 
-    margin: 0 auto; 
-    padding: 0 15px;
-    margin-bottom: 20px;
+  text-align: center;
+  padding: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  margin-bottom: 20px;
 }
 
-.container mt-4{
-    align-content: center;
+.container mt-4 {
+  align-content: center;
 }
-
 
 .text {
-    font-size: 24px;
-    color: #6a6a6a;
-    
+  font-size: 24px;
+  color: #6a6a6a;
 }
- 
+
 .animacoes-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center; 
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
 .card-item {
-    width: 100%; 
-    max-width: 280px;
+  width: 100%;
+  max-width: 280px;
 }
 
-/* Formulário */  
+/* Formulário */
 
-  input{
-      padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      margin-top: 5px;
-      font-size: 18px;
-      text-align: center;
-      margin-bottom: 15px;
-  }
-  
-  input:hover{
-    background-color: #cbf8ff;
-  }
-  
-  .loca {
-    margin-bottom: 20px;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: rgba(255, 126, 210, 0.37);
-    width: 30%;
-    
-  }
-  
-  label {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    font-size: xx-large;
-    color: purple;
-  
-}
-  
-.btnz{
-    background-color: #16bcde;
-    color: purple;
-    font-size: 20px;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s ease;
+input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 15px;
 }
 
-.btnz:hover{
-    background-color: #148fa7;
+input:hover {
+  background-color: #cbf8ff;
+}
+
+.loca {
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: rgba(255, 126, 210, 0.37);
+  width: 30%;
+}
+
+label {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-size: xx-large;
+  color: purple;
+}
+
+.btnz {
+  background-color: #16bcde;
+  color: purple;
+  font-size: 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.btnz:hover {
+  background-color: #148fa7;
 }
 
 /* Responsividade Formulário */
 
 @media (max-width: 768px) {
-    .loca {
-        width: 90%; 
-        padding: 15px; 
-    }
+  .loca {
+    width: 90%;
+    padding: 15px;
+  }
 
-    .img-fluid {
-        max-width: 80%; 
-        margin-bottom: 20px; 
-    }
+  .img-fluid {
+    max-width: 80%;
+    margin-bottom: 20px;
+  }
 }
 
 /* NavBar */
 
 .navbar {
-    background-color: #ffbee4;
-    color: rgb(60, 60, 60);
-    padding: 10px 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+  background-color: #ffbee4;
+  color: rgb(60, 60, 60);
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .navbar-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navbar-logo {
-    font-size: 24px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .navbar-links {
-    list-style: none;
-    display: flex;
+  list-style: none;
+  display: flex;
 }
 
 .navbar-links li {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .navbar-links .nav-link {
-    color: rgb(199, 44, 145);
-    text-decoration: none;
-    font-size: 25px;
-    padding: 10px;
-    transition: background-color 0.3s, transform 0.2s ease-in-out;
+  color: rgb(199, 44, 145);
+  text-decoration: none;
+  font-size: 25px;
+  padding: 10px;
+  transition: background-color 0.3s, transform 0.2s ease-in-out;
 }
 
 .navbar-links .nav-link:hover {
-    background-color: #ff8ade;
-    border-radius: 5px;
-    transform: scale(1.05); 
+  background-color: #ff8ade;
+  border-radius: 5px;
+  transform: scale(1.05);
 }
 
 .navbar-links .disabled {
-    color: #4e4e4e;
-    pointer-events: none;
+  color: #4e4e4e;
+  pointer-events: none;
 }
 
 .navbar-auth .btn-logout {
-    background-color: #c0392b;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 20px;
-    transition: background-color 0.3s, transform 0.2s ease-in-out;
+  background-color: #c0392b;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 20px;
+  transition: background-color 0.3s, transform 0.2s ease-in-out;
 }
 
 .navbar-auth .btn-logout:hover {
-    background-color: #e74c3c; 
-    transform: scale(1.05); 
+  background-color: #e74c3c;
+  transform: scale(1.05);
 }
 
 .navbar-auth .btn-logout:focus {
-    outline: 2px solid #e74c3c; 
-    outline-offset: 4px;
+  outline: 2px solid #e74c3c;
+  outline-offset: 4px;
 }
 
 .navbar-auth .btn-logout.disabled {
-    background-color: #9c8f9b;
-    cursor: not-allowed;
+  background-color: #9c8f9b;
+  cursor: not-allowed;
 }
 
 .navbar-auth {
-    display: flex;
-    align-items: center;
-    gap: 10px; 
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .ftPerfil {
-    border-radius: 50%;
-    margin-left: 20px;
+  border-radius: 50%;
+  margin-left: 20px;
 }
 
 .btn-logout {
-    background-color: #c0392b;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s ease-in-out;
+  background-color: #c0392b;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s ease-in-out;
 }
 
 .btn-logout:hover {
-    background-color: #e74c3c;
-    transform: scale(1.05);
+  background-color: #e74c3c;
+  transform: scale(1.05);
 }
 
 /* Responsividade  navbar */
 
 @media screen and (max-width: 768px) {
-    .navbar-container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+  .navbar-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    .navbar-auth {
-        margin-top: 10px;
-    }
+  .navbar-auth {
+    margin-top: 10px;
+  }
 
-    .navbar-logo {
-        margin-bottom: 15px;
-    }
+  .navbar-logo {
+    margin-bottom: 15px;
+  }
 
-    .navbar-links {
-        display: none;
-    }
+  .navbar-links {
+    display: none;
+  }
 
-    .navbar.active .navbar-links {
-        display: flex;
-    }
+  .navbar.active .navbar-links {
+    display: flex;
+  }
 
-    .navbar-toggler {
-        display: block;
-    }
+  .navbar-toggler {
+    display: block;
+  }
 
-    .ftPerfil {
-        width: 25px;
-        height: auto;
-    }
+  .ftPerfil {
+    width: 25px;
+    height: auto;
+  }
 }

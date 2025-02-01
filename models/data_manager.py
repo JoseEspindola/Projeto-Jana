@@ -114,3 +114,12 @@ def removerAluguel(id):
     data = load_data()
     data = [item for item in data if item['id'] != id]
     save_data(data)
+
+def atualizarUsuario(email, nova_senha):
+    usuarios = load_login()  
+    for usuario in usuarios:
+        if usuario["usuario"] == email:
+            usuario["senha"] = nova_senha  
+            save_login(usuarios) 
+            return True
+    return False

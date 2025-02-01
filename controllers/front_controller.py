@@ -1,5 +1,5 @@
 from flask import render_template, url_for, request, redirect, session, flash, Blueprint,make_response
-from models.data_manager import buscar_animacao, novoUsuario, logandoUsuario, aluguel, getData, removerAluguel, upload_imagem,verificar_arquivos
+from models.data_manager import buscar_animacao, novoUsuario, logandoUsuario, aluguel, getData, removerAluguel, upload_imagem,verificar_arquivos,atualizarUsuario
 
 # Criação do Blueprint
 front_controller = Blueprint('front_controller', __name__)
@@ -68,6 +68,31 @@ def cadastro():
             flash("Formato de arquivo não aceito. <br>Tente outra imagem com formato png.")
     return render_template("cadastro.html")
 
+# ---------------- Rota para Editar Cadastro ---------------- #
+@front_controller.route('/editar_cadastro', methods=['GET', 'POST'])
+def editar_cadastro():
+    if "logado" not in session or not session["logado"]:
+        flash("Você precisa estar logado para editar seu cadastro.")
+        return redirect(url_for('front_controller.login'))
+    
+    usuario = session['logado']
+    if request.method == 'POST':
+        nova_senha = request.form.get("pwSenha")
+        imagem = request.files.get("fileFoto")
+        
+        if nova_senha:
+            atualizarUsuario(usuario, nova_senha)
+        
+        if imagem and verificar_arquivos(imagem):
+            upload_imagem(imagem, usuario)
+        elif imagem:
+            flash("Formato de arquivo não aceito. Tente outra imagem com formato png.")
+            return redirect(url_for('front_controller.editar_cadastro'))
+        
+        flash("Cadastro atualizado com sucesso.")
+        return redirect(url_for('front_controller.animacao'))
+    
+    return render_template('editar.html', usuario=usuario)
 
 # ---------------- Rota para Alugar ---------------- #
 @front_controller.route('/alugar', methods=['GET', 'POST'])
