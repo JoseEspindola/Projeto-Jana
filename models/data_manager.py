@@ -96,6 +96,28 @@ def upload_imagem(imagem, nome):
 def verificar_arquivos(imagem):
     return '.' in imagem.filename and imagem.filename.rsplit('.', 1)[1].lower() in TIPOS_IMAGEM
 
+def recuperar_nome_arquivo(usuario):
+    for arquivo in os.listdir(UPLOAD_FOLDER):
+        if arquivo.startswith(usuario + "."):
+            return arquivo 
+    return None
+
+def deletar_imagem(nome_arquivo):
+    """Deleta uma imagem do servidor se ela existir."""
+    if nome_arquivo:
+        filepath = os.path.join(UPLOAD_FOLDER, nome_arquivo)
+        if os.path.exists(filepath):
+            os.remove(filepath)
+            return True
+    return False
+
+def deletandoUsuario(usuarioRemover):
+    for u in usuarios:
+        if u["usuario"] == usuarioRemover:
+            usuarios.remove(u)
+            deletar_imagem(recuperar_nome_arquivo(usuarioRemover))
+            return True
+    return False
 
 #---------------------------------------------------------------------------------------------------
 

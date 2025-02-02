@@ -1,5 +1,5 @@
 from flask import render_template, url_for, request, redirect, session, flash, Blueprint,make_response
-from models.data_manager import buscar_animacao, novoUsuario, logandoUsuario, aluguel, getData, removerAluguel, upload_imagem,verificar_arquivos,atualizarUsuario
+from models.data_manager import buscar_animacao, novoUsuario, logandoUsuario, aluguel, getData, removerAluguel, upload_imagem,verificar_arquivos,atualizarUsuario,deletandoUsuario
 
 # Criação do Blueprint
 front_controller = Blueprint('front_controller', __name__)
@@ -94,6 +94,21 @@ def editar_cadastro():
     
     return render_template('editar.html', usuario=usuario)
 
+# ---------------- Rota para Deletar ---------------- #
+@front_controller.route('/deletando', methods=['GET', 'POST'])
+def deletando():
+    if request.method == 'POST':
+        if deletandoUsuario(session['logado']):
+            session.pop("logado", None)
+            resp = make_response(redirect(url_for('front_controller.principal')))
+            resp.set_cookie('usuario_logado', '', expires=0)
+            flash("Sua conta foi deslogada e deletada com sucesso.")
+        else:
+            resp = make_response(redirect(url_for('front_controller.principal')))
+            flash("Erro ao delatar sua conta <br> Tente novamente")
+    return resp
+
+
 # ---------------- Rota para Alugar ---------------- #
 @front_controller.route('/alugar', methods=['GET', 'POST'])
 def alugar():
@@ -114,11 +129,7 @@ def alugados():
     if "logado" not in session or not session["logado"]:
         flash("Você precisa estar logado para acessar esta página.")
         return redirect(url_for("front_controller.login"))
-    
-    # Recupera os dados do arquivo
     alugados = getData()
-    
-    # Filtra os itens com base na sessão do usuário logado
     sessao_atual = session["logado"]
     alugados_filtrados = [item for item in alugados if item['id'].endswith(sessao_atual)]
     

@@ -24,6 +24,8 @@ Editar Cadastro
             <input type="file" id="photo" name="fileFoto" class="form-control" accept="image/*">
         </div>
         <button type="submit" class="btnz">Salvar Alterações</button>
+        <button type="submit" formaction="{{ url_for('front_controller.deletando') }}" class="btn btn-danger mt-3"
+        onclick="return confirm('Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita.');">Excluir Conta</button>
     </form>
 </div>
 {% endblock conteudo %}
