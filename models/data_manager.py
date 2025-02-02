@@ -116,6 +116,7 @@ def deletandoUsuario(usuarioRemover):
         if u["usuario"] == usuarioRemover:
             usuarios.remove(u)
             deletar_imagem(recuperar_nome_arquivo(usuarioRemover))
+            save_login(usuarios)
             return True
     return False
 
