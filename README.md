@@ -27,7 +27,7 @@ Este projeto é um **sistema de aluguel de filmes** que permite aos usuários se
 ### 5. Logout 🚪
 - **Logout**: Sistema de logout com remoção de sessão e cookies.
 
----
+
 
 ## Requisitos ⚙️
 
