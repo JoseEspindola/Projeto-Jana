@@ -23,10 +23,6 @@ def save_login(data):
     with open(config.DATA_LOGIN, "w") as file:
         json.dump(data, file, indent=4)
 
-
-#---------------------------------------------------------------------------------------------------
-
-
 # Funções para interagir com a API
 API_KEY = "a32360d69baaa40ce87cb3f2dc57ff49"
 def buscar_animacao():   
@@ -45,10 +41,6 @@ def buscar_animacao():
         return animacoes, f"Filmes de animação"
     else:
         return [], f"Falhou a busca por filmes de animação. Erro: {resposta.status_code}"
-
-
-#---------------------------------------------------------------------------------------------------
-
 
 # Funções de gerenciamento de usuários
 usuarios = load_login()
@@ -69,8 +61,25 @@ def logandoUsuario(usuario, senha):
             return True
     return False
 
+def deletandoUsuario(usuarioRemover):
+    for u in usuarios:
+        if u["usuario"] == usuarioRemover:
+            usuarios.remove(u)
+            deletar_imagem(recuperar_nome_arquivo(usuarioRemover))
+            save_login(usuarios)
+            return True
+    return False
 
-#---------------------------------------------------------------------------------------------------
+def atualizarUsuario(email, nova_senha):
+    usuarios = load_login()  
+    for usuario in usuarios:
+        if usuario["usuario"] == email:
+            usuario["senha"] = nova_senha  
+            save_login(usuarios) 
+            return True
+    return False
+
+# 📂 Funções para Gerenciamento de Imagens de Usuário
 UPLOAD_FOLDER = config.UPLOAD_FOLDER
 TIPOS_IMAGEM = config.TIPOS_IMAGEM
 
@@ -89,9 +98,7 @@ def upload_imagem(imagem, nome):
             with open(default_image_path, "rb") as default_image:
                 with open(filepath, "wb") as user_image:
                     user_image.write(default_image.read())
-
     return True
-
 
 def verificar_arquivos(imagem):
     return '.' in imagem.filename and imagem.filename.rsplit('.', 1)[1].lower() in TIPOS_IMAGEM
@@ -111,19 +118,7 @@ def deletar_imagem(nome_arquivo):
             return True
     return False
 
-def deletandoUsuario(usuarioRemover):
-    for u in usuarios:
-        if u["usuario"] == usuarioRemover:
-            usuarios.remove(u)
-            deletar_imagem(recuperar_nome_arquivo(usuarioRemover))
-            save_login(usuarios)
-            return True
-    return False
-
-#---------------------------------------------------------------------------------------------------
-
-
-# Funções de manipulação de dados de aluguel
+# 🎬 Funções de Manipulação de Dados de Aluguel
 def aluguel(dados, sessao):
     data = load_data()
     new_id = str(max([int(item['id'][:-len(sessao)]) for item in data if item['id'].endswith(sessao)], default=0) + 1)
@@ -137,12 +132,3 @@ def removerAluguel(id):
     data = load_data()
     data = [item for item in data if item['id'] != id]
     save_data(data)
-
-def atualizarUsuario(email, nova_senha):
-    usuarios = load_login()  
-    for usuario in usuarios:
-        if usuario["usuario"] == email:
-            usuario["senha"] = nova_senha  
-            save_login(usuarios) 
-            return True
-    return False
